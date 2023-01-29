@@ -22,5 +22,3 @@ grade I want.
 - As a user, I want to be able to add a course to my course manager.
 - As a user, I want to be able to add courses to a list of courses a student is taking.
 - As a user, I want to be able to calculate the weighted average of any given student. 
-
-An example of text with **bold** and *italic* fonts.  
