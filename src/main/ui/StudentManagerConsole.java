@@ -100,21 +100,44 @@ public class StudentManagerConsole {
         processStudent();
     }
 
+    // EFFECTS: adds a grade to the given student
+    public void addGrade(Student s) throws IOException {
+        System.out.println("Enter any course from the course manager to add to the student.");
+        showCourses();
+        try {
+            Course c = coManager.getCourse(in.readLine());
+            System.out.println("What percent did the student get in this course?");
+            int percentage = Integer.parseInt(in.readLine());
+            System.out.println("Is this a Credit/D/Fail course? (Y/N)");
+            String command = in.readLine();
+            if (command.equals("Y") && s.addCourseGrade(c, percentage, true)) {
+                System.out.println("Grade added successfully!");
+            } else if (command.equals("N") && s.addCourseGrade(c, percentage, false)) {
+                System.out.println("Grade added successfully!");
+            } else {
+                throw new IOException();
+            }
+        } catch (Exception e) {
+            System.out.println("Oops! That wasn't a valid input!");
+            addGrade(s);
+        }
+    }
+
     // EFFECTS: shows the information of a specific student in the student manager
     public void showStudent() throws IOException {
         System.out.println("Enter the name of the student that you want to see.");
         try {
             String input = in.readLine();
             Student s = stManager.getStudent(input);
-            System.out.println("Name: " + s.getName() + "\\nStatus: "
+            System.out.println("Name: " + s.getName() + "\nStatus: "
                     + s.getStatus() + "\nMajor: " + s.getMajor() + "\nGrad Date: " + s.getGradDate() + "\nGrades: ");
             for (int i = 0; i < s.getCourseGrade().size(); i++) {
                 System.out.println(s.getCourseGrade().get(i).getName() + ": "
-                        + s.getCourseGrade().get(i).getPercentage());
+                        + s.getCourseGrade().get(i).getGrade());
             }
             System.out.println("GPA: " + s.getGPA() + "\nWould you like to add a course grade to this student? (Y/N)");
             if (in.readLine().equals("Y")) {
-                addCourse();
+                addGrade(s);
             }
         } catch (Exception e) {
             System.out.println("That wasn't a valid input! Please try again.");
@@ -135,7 +158,7 @@ public class StudentManagerConsole {
     }
 
     // EFFECTS: adds a student if the student name doesn't already exist in the student manager
-    public void addStudent() throws IOException, IndexOutOfBoundsException {
+    public void addStudent() throws IOException {
         System.out.println("Enter student's \"name, international/domestic, major, graduation date\" "
                 + "in that order and format.");
         try {
