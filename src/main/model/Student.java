@@ -61,7 +61,7 @@ public class Student {
         if (dem == 0) {
             return "N/A";
         }
-        return num / dem + "";
+        return (double)(num / dem) + "";
     }
 
     public String getName() {
@@ -94,6 +94,10 @@ public class Student {
 
     public void setGradDate(int gradDate) {
         this.gradDate = gradDate;
+    }
+
+    public CourseGrade getCourseGrade(int index) {
+        return courseGrade.get(index);
     }
 
     public ArrayList<CourseGrade> getCourseGrade() {

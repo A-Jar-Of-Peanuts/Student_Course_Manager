@@ -6,13 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCourseManager {
     CourseManager cm1, cm2;
-    Course c1, c2, c3;
 
     @BeforeEach
     public void setup() {
-        c1 = new Course("CPSC 110", 4);
-        c2 = new Course("CPSC 110", 3);
-        c3 = new Course("CPSC 210", 4);
         cm1 = new CourseManager();
         cm2 = new CourseManager();
     }
