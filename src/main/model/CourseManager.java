@@ -37,16 +37,21 @@ public class CourseManager {
     // REQUIRES: remove is smaller than the length of courses
     // MODIFIES: this
     // EFFECTS: removes the course at the given index from courses
+    // as well as removes the course from the hashmap
     public void removeCourse(int remove) {
+        Course temp = courses.get(remove);
+        map.remove(temp.getName());
         courses.remove(remove);
     }
 
     // REQUIRES: remove is the name of a course in the course list
     // MODIFIES: this
     // EFFECTS: removes the course with the given course name from the course list
+    // as well as the hashmap
     public void removeCourse(String remove) {
         Course temp = map.get(remove);
         courses.remove(temp);
+        map.remove(remove);
     }
 
     // REQUIRES: index is smaller than the length of courses

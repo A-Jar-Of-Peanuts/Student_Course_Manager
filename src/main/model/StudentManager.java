@@ -39,15 +39,19 @@ public class StudentManager {
     // MODIFIES: this
     // EFFECTS: removes the student at the given index from students
     public void removeStudent(int remove) {
+        Student temp = students.get(remove);
+        map.remove(temp.getName());
         students.remove(remove);
     }
 
     // REQUIRES: remove is the name of a student in the student list
     // MODIFIES: this
     // EFFECTS: removes the student with the given name from the student list
+    // as well as the hashmap
     public void removeStudent(String remove) {
         Student temp = map.get(remove);
         students.remove(temp);
+        map.remove(remove);
     }
 
     // REQUIRES: index is smaller than the length of students

@@ -51,7 +51,7 @@ public class Student {
 
     // EFFECTS: returns the weighted gpa of all of this student's course grades. If
     // everthing is credit/d/fail OR this student isn't taking any courses currently, returns -1
-    public double getGPA() {
+    public String getGPA() {
         int num = 0;
         int dem = 0;
         for (int i = 0; i < courseGrade.size(); i++) {
@@ -59,9 +59,9 @@ public class Student {
             dem += courseGrade.get(i).getCredit();
         }
         if (dem == 0) {
-            return -1;
+            return "N/A";
         }
-        return num / dem;
+        return num / dem + "";
     }
 
     public String getName() {

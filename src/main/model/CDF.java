@@ -14,7 +14,7 @@ public class CDF extends CourseGrade {
         super(c, percentage);
     }
 
-    // REQUIRES: percentage != -1
+    // REQUIRES: percentage != -1 and percentage <= 100
     // EFFECTS: returns Cr if higher than 55%, D if percentage is between 50-54.9%,
     // and F if under 50%.
     public String getGrade() {
