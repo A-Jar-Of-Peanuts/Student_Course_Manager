@@ -66,8 +66,10 @@ public class TestStudent {
     public void addStudentTest() {
         assertTrue(c1.addCourseGrade(new Course("CPSC 110", 4), 4, false));
         assertTrue(c1.addCourseGrade(new Course("CPSC 210", 4), 4, true));
+        assertEquals(2, c1.getCourseGrade().size());
 
         assertFalse(c1.addCourseGrade(new Course("CPSC 110", 3), 4, false));
         assertFalse(c1.addCourseGrade(new Course("CPSC 210", 3), 4, true));
+        assertEquals(2, c1.getCourseGrade().size());
     }
 }
