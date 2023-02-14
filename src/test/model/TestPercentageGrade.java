@@ -10,7 +10,7 @@ public class TestPercentageGrade {
     @BeforeEach
     public void setup() {
         c1 = new PercentageGrade(new Course("", 4), 0);
-        c2 = new PercentageGrade(new Course("", 3), 50);
+        c2 = new PercentageGrade(new Course("ABC", 3), 50);
         c3 = new PercentageGrade(new Course("", 1), 55);
     }
 
@@ -33,5 +33,21 @@ public class TestPercentageGrade {
         assertEquals(4, c1.getCredit());
         assertEquals(3, c2.getCredit());
         assertEquals(1, c3.getCredit());
+    }
+
+    @Test
+    public void percentageTest() {
+        assertEquals(0, c1.getPercentage());
+        c1.setPercentage(90);
+        assertEquals(90, c1.getPercentage());
+
+        c1.setPercentage(70);
+        assertEquals(70, c1.getPercentage());
+    }
+
+    @Test
+    public void courseTest() {
+        assertEquals("", c1.getCourse().getName());
+        assertEquals("ABC", c2.getCourse().getName());
     }
 }

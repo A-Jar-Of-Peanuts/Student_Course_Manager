@@ -10,7 +10,7 @@ class TestCDF {
     @BeforeEach
     public void setup() {
         c1 = new CDF(new Course("", 4), 0);
-        c2 = new CDF(new Course("", 4), 50);
+        c2 = new CDF(new Course("ABC", 4), 50);
         c3 = new CDF(new Course("", 4), 55);
     }
 
@@ -33,5 +33,21 @@ class TestCDF {
         assertEquals(0, c1.getCredit());
         assertEquals(0, c2.getCredit());
         assertEquals(0, c3.getCredit());
+    }
+
+    @Test
+    public void percentageTest() {
+        assertEquals(0, c1.getPercentage());
+        c1.setPercentage(90);
+        assertEquals(90, c1.getPercentage());
+
+        c1.setPercentage(70);
+        assertEquals(70, c1.getPercentage());
+    }
+
+    @Test
+    public void courseTest() {
+        assertEquals("", c1.getCourse().getName());
+        assertEquals("ABC", c2.getCourse().getName());
     }
 }
