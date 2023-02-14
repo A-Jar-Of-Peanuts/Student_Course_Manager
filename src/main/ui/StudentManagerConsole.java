@@ -118,8 +118,10 @@ public class StudentManagerConsole {
                 throw new IOException();
             }
         } catch (Exception e) {
-            System.out.println("Oops! That wasn't a valid input!");
-            addGrade(s);
+            System.out.println("That wasn't a valid input! Press \"t\" to try again, any other key to return to menu.");
+            if (in.readLine().equals("t")) {
+                addGrade(s);
+            }
         }
     }
 
@@ -136,12 +138,17 @@ public class StudentManagerConsole {
                         + s.getCourseGrade().get(i).getGrade());
             }
             System.out.println("GPA: " + s.getGPA() + "\nWould you like to add a course grade to this student? (Y/N)");
-            if (in.readLine().equals("Y")) {
+            input = in.readLine();
+            if (input.equals("Y")) {
                 addGrade(s);
+            } else if (!input.equals("N")) {
+                throw new IOException();
             }
         } catch (Exception e) {
-            System.out.println("That wasn't a valid input! Please try again.");
-            showStudent();
+            System.out.println("That wasn't a valid input! Press \"t\" to try again, any other key to return to menu.");
+            if (in.readLine().equals("t")) {
+                showStudent();
+            }
         }
     }
 

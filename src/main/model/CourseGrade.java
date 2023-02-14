@@ -6,12 +6,6 @@ public abstract class CourseGrade {
     protected final Course course;
     protected int percentage;
 
-    // EFFECTS: creates a course grade with the given course and -1 as percentage
-    public CourseGrade(Course course) {
-        this.course = course;
-        this.percentage = -1;
-    }
-
     // REQUIRES: percentage >= 0
     // EFFECTS: creates a course grade with the given course and percentage
     public CourseGrade(Course course, int percentage) {

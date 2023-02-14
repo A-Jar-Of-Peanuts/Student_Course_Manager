@@ -23,6 +23,20 @@ public class TestStudent {
     }
 
     @Test
+    public void setFieldTest() {
+        c1.setName("b");
+        c2.setName("s");
+        c1.setStatus("domestic");
+        c1.setMajor("anthropology");
+        c1.setGradDate(2088);
+        assertEquals("b", c1.getName());
+        assertEquals("s", c2.getName());
+        assertEquals("domestic", c1.getStatus());
+        assertEquals("anthropology", c1.getMajor());
+        assertEquals(2088, c1.getGradDate());
+    }
+
+    @Test
     public void getGPAtest() {
         assertEquals("N/A", c1.getGPA());
         c1.addCourseGrade(new Course("a", 4), 4, true);
@@ -48,4 +62,12 @@ public class TestStudent {
         assertEquals("c", c2.getCourseGrade(2).getName());
     }
 
+    @Test
+    public void addStudentTest() {
+        assertTrue(c1.addCourseGrade(new Course("CPSC 110", 4), 4, false));
+        assertTrue(c1.addCourseGrade(new Course("CPSC 210", 4), 4, true));
+
+        assertFalse(c1.addCourseGrade(new Course("CPSC 110", 3), 4, false));
+        assertFalse(c1.addCourseGrade(new Course("CPSC 210", 3), 4, true));
+    }
 }

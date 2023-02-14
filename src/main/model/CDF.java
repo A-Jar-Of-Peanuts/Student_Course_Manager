@@ -3,11 +3,6 @@ package model;
 // represents a Credit/D/Fail course grade.
 public class CDF extends CourseGrade {
 
-    // EFFECTS: creates a CDF with the given course and -1 as percentage
-    public CDF(Course c) {
-        super(c);
-    }
-
     // REQUIRES: percentage >= 0
     // EFFECTS: creates a CDF with the given course and percentage
     public CDF(Course c, int percentage) {

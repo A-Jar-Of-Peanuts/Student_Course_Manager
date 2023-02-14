@@ -3,11 +3,6 @@ package model;
 // Represents a percentage course grade.
 public class PercentageGrade extends CourseGrade {
 
-    // EFFECTS: creates a percentage grade with the given course and -1 as percentage
-    public PercentageGrade(Course c) {
-        super(c);
-    }
-
     // REQUIRES: percentage >= 0
     // EFFECTS: creates a percentage grade with the given course and percentage
     public PercentageGrade(Course c, int percentage) {
