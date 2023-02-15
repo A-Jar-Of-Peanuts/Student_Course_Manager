@@ -10,17 +10,20 @@ public class PercentageGrade extends CourseGrade {
     }
 
     // EFFECTS: return the grade for this course grade
+    @Override
     public String getGrade() {
         return percentage + "";
     }
 
     // REQUIRES: percentage != -1
     // EFFECTS: returns the weighted grade for this course grade (percentage * credit)
+    @Override
     public int getWeightedGrade() {
         return percentage * getCredit();
     }
 
     // EFFECTS: returns the amount of credit the course is worth
+    @Override
     public int getCredit() {
         return course.getCredit();
     }

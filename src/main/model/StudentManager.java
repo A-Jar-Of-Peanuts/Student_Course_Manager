@@ -3,7 +3,7 @@ package model;
 import java.util.*;
 
 // Creates and manages students, and sorts them in lexicographical order according
-// to their names. . Can add, remove, and return students.
+// to their names. Can add, remove, and return students.
 public class StudentManager {
     private ArrayList<Student> students;
     private HashMap<String, Student> map;
