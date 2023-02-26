@@ -1,7 +1,11 @@
 package model;
 
+import persistence.Writable;
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 // A course with a name and the amount of credit its worth
-public class Course {
+public class Course implements Writable {
     private final String name;
     private final int credit;
 
@@ -17,5 +21,13 @@ public class Course {
 
     public int getCredit() {
         return credit;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("credit", credit);
+        return json;
     }
 }

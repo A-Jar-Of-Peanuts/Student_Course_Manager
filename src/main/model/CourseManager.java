@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.util.*;
+import persistence.Writable;
 
 // Creates and manages courses, and sorts them in lexicographical order. Can
 // remove, return and add courses.
-public class CourseManager {
+public class CourseManager implements Writable {
     private ArrayList<Course> courses;
     private HashMap<String, Course> map;
 
@@ -70,5 +73,21 @@ public class CourseManager {
     // EFFECTS: returns the length of courses
     public int getLength() {
         return courses.size();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("courses", coursesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns courses in this course manager as a JSON array
+    private JSONArray coursesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Course c : courses) {
+            jsonArray.put(c.toJson());
+        }
+        return jsonArray;
     }
 }

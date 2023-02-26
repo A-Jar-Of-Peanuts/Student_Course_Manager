@@ -1,10 +1,13 @@
 package model;
 
 import java.util.*;
+import persistence.Writable;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 // Represents a student with a list of grades, graduation date,
 // major, and status (domestic or international)
-public class Student {
+public class Student implements Writable {
     private String name;
     private String status;
     private String major;
@@ -102,5 +105,24 @@ public class Student {
 
     public ArrayList<CourseGrade> getCourseGrade() {
         return courseGrade;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("status", status);
+        json.put("major", gradDate);
+        json.put("courseGrade", courseGradeToJson());
+        return json;
+    }
+
+    // EFFECTS: returns course grades in this student as a JSON array
+    private JSONArray courseGradeToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (CourseGrade c : courseGrade) {
+            jsonArray.put(c.toJson());
+        }
+        return jsonArray;
     }
 }

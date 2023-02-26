@@ -1,8 +1,12 @@
 package model;
 
+import persistence.Writable;
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 // abstract class that represents a course and the grade
 // attained in that course.
-public abstract class CourseGrade {
+public abstract class CourseGrade implements Writable {
     protected final Course course;
     protected int percentage;
 
@@ -37,4 +41,13 @@ public abstract class CourseGrade {
     public void setPercentage(int percentage) {
         this.percentage = percentage;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("course", course);
+        json.put("percentage", percentage);
+        return json;
+    }
+
 }

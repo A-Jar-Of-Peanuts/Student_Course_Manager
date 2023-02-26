@@ -24,3 +24,9 @@ grade I want.
 - As a user, I want to be able to add a course to my course manager.
 - As a user, I want to be able to add courses to a list of courses a student is taking.
 - As a user, I want to be able to calculate the weighted average of any given student. 
+- As a user, I want to have the option to save my student and course manager list.
+- As a user, I want to have the option to load my student and course manager from file when I start the application.
+
+##References
+- CPSC 210 teller app
+- CPSC 210 jsonserialization demo

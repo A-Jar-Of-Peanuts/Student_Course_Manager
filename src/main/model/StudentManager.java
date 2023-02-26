@@ -1,10 +1,13 @@
 package model;
 
 import java.util.*;
+import persistence.Writable;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 // Creates and manages students, and sorts them in lexicographical order according
 // to their names. Can add, remove, and return students.
-public class StudentManager {
+public class StudentManager implements Writable {
     private ArrayList<Student> students;
     private HashMap<String, Student> map;
 
@@ -70,5 +73,21 @@ public class StudentManager {
     // EFFECTS: returns the length of students
     public int getLength() {
         return students.size();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("students", studentsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns students in this student manager as a JSON array
+    private JSONArray studentsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Student s : students) {
+            jsonArray.put(s.toJson());
+        }
+        return jsonArray;
     }
 }
