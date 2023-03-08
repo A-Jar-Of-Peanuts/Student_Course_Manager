@@ -27,8 +27,10 @@ public class JsonWriter {
     public void write(StudentManager sm, CourseManager cm) {
         JSONObject smjson = sm.toJson();
         JSONObject cmjson = cm.toJson();
-        saveToFile(smjson.toString(TAB));
-        saveToFile(cmjson.toString(TAB));
+        JSONObject top = new JSONObject();
+        top.put("sm", smjson);
+        top.put("cm", cmjson);
+        saveToFile(top.toString(TAB));
     }
 
     // MODIFIES: this

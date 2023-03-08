@@ -1,18 +1,23 @@
 package ui;
 
 import model.*;
+import persistence.*;
 
+import java.awt.print.Printable;
 import java.util.*;
 import java.io.*;
 
 // student manager console app
 public class StudentManagerConsole {
-    BufferedReader in;
-    StudentManager stManager;
-    CourseManager coManager;
+    private static final String JSON_STORE = "./data/studentcoursemanager.json";
+    private BufferedReader in;
+    private StudentManager stManager;
+    private CourseManager coManager;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs runSM
-    public StudentManagerConsole() {
+    public StudentManagerConsole() throws FileNotFoundException {
         try {
             runSM();
         } catch (Exception e) {
@@ -26,6 +31,8 @@ public class StudentManagerConsole {
     public void init() {
         stManager = new StudentManager();
         coManager = new CourseManager();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         in = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -57,6 +64,8 @@ public class StudentManagerConsole {
     public void displayMainMenu() {
         System.out.println("Enter \"student\" to access and modify students.");
         System.out.println("Enter \"course\" to access and modify courses.");
+        System.out.println("Enter \"save\" to save to file.");
+        System.out.println("Enter \"load\" to load from file.");
         System.out.println("Enter \"exit\" to exit.");
     }
 
@@ -69,8 +78,38 @@ public class StudentManagerConsole {
             case "course":
                 processCourse();
                 break;
+            case "save":
+                save();
+                break;
+            case "load":
+                load();
+                break;
             default:
                 throw new IOException();
+        }
+    }
+
+    // EFFECTS: saves the student manager and course manager to file
+    private void save() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(stManager, coManager);
+            jsonWriter.close();
+            System.out.println("Saved!");
+        } catch (FileNotFoundException e) {
+            System.out.println("unable to save");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads the student manager and course manager from file
+    private void load() {
+        try {
+            coManager = jsonReader.readCM();
+            stManager = jsonReader.readSM();
+            System.out.println("loaded!");
+        } catch (IOException e) {
+            System.out.println("unable to load");
         }
     }
 

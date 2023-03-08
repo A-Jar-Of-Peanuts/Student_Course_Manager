@@ -112,7 +112,8 @@ public class Student implements Writable {
         JSONObject json = new JSONObject();
         json.put("name", name);
         json.put("status", status);
-        json.put("major", gradDate);
+        json.put("major", major);
+        json.put("gradDate", gradDate);
         json.put("courseGrade", courseGradeToJson());
         return json;
     }

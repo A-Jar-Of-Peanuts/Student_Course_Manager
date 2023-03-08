@@ -9,6 +9,7 @@ import org.json.JSONArray;
 public abstract class CourseGrade implements Writable {
     protected final Course course;
     protected int percentage;
+    protected boolean cdf;
 
     // REQUIRES: percentage >= 0
     // EFFECTS: creates a course grade with the given course and percentage
@@ -45,8 +46,10 @@ public abstract class CourseGrade implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("course", course);
+        json.put("name", course.getName());
+        json.put("credit", course.getCredit());
         json.put("percentage", percentage);
+        json.put("cdf", cdf);
         return json;
     }
 

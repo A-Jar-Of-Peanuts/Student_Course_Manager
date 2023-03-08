@@ -23,19 +23,20 @@ public class JsonReader {
     public CourseManager readCM() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseCM(jsonObject);
+        JSONObject cm = jsonObject.getJSONObject("cm");
+        return parseCM(cm);
     }
 
-    // EFFECTS: reads student manager from file and returns it,
-    // throws IOException if an error occurs while reading data from file
-    // TODO
-//    public CourseManager readSM() throws IOException {
-//        String jsonData = readFile(source);
-//        JSONObject jsonObject = new JSONObject(jsonData);
-//        return parseSM(jsonObject);
-//    }
+//     EFFECTS: reads student manager from file and returns it,
+//     throws IOException if an error occurs while reading data from file
+    public StudentManager readSM() throws IOException {
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+        JSONObject sm = jsonObject.getJSONObject("sm");
+        return parseSM(sm);
+    }
 
-    // EFFECTS: reads souce file as string and returns it
+    // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -71,20 +72,20 @@ public class JsonReader {
         cm.addCourse(name, credit);
     }
 
-    // EFFECTS: parses course manager from JSON object and returns it
+    // EFFECTS: parses student manager from JSON object and returns it
     private StudentManager parseSM(JSONObject jsonObject) {
         StudentManager sm = new StudentManager();
         addStudents(sm, jsonObject);
         return sm;
     }
 
-    // MODIFIES: cm
-    // EFFECTS: parses courses from JSON  object and adds them to course manager
+    // MODIFIES: sm
+    // EFFECTS: parses students from JSON  object and adds them to student manager
     private void addStudents(StudentManager sm, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("courses");
+        JSONArray jsonArray = jsonObject.getJSONArray("students");
         for (Object json : jsonArray) {
-            JSONObject nextCourse = (JSONObject) json;
-            addStudent(sm, nextCourse);
+            JSONObject nextStudent = (JSONObject) json;
+            addStudent(sm, nextStudent);
         }
     }
 
@@ -98,7 +99,6 @@ public class JsonReader {
 
         sm.addStudent(name, status, major, gradDate);
         Student s = sm.getStudent(name);
-
         JSONArray jsonArray = jsonObject.getJSONArray("courseGrade");
         for (Object json : jsonArray) {
             JSONObject nextCourse = (JSONObject) json;
@@ -109,7 +109,11 @@ public class JsonReader {
     // MODIFIES: s
     // EFFECTS: parses courseGrade from JSON objects and adds it to student
     public void addCourseGrade(Student s, JSONObject jsonObject) {
+        String name = jsonObject.getString("name");
+        int credit = jsonObject.getInt("credit");
+        int percentage = jsonObject.getInt("percentage");
+        boolean cdf = jsonObject.getBoolean("cdf");
+        s.addCourseGrade(new Course(name, credit), percentage, cdf);
     }
-
 
 }

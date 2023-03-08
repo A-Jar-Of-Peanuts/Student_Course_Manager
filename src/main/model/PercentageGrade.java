@@ -4,9 +4,10 @@ package model;
 public class PercentageGrade extends CourseGrade {
 
     // REQUIRES: percentage >= 0
-    // EFFECTS: creates a percentage grade with the given course and percentage
+    // EFFECTS: creates a percentage grade with the given course and percentage. sets cdf to false
     public PercentageGrade(Course c, int percentage) {
         super(c, percentage);
+        cdf = false;
     }
 
     // EFFECTS: return the grade for this course grade

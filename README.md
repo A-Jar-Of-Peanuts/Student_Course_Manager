@@ -8,8 +8,7 @@ is free to add any number of students to keep track of to the student manager.
 You can add courses to each student, as well as their grades for
 each course. The program can then calculate the weighted average of
 all their courses for the user. The student can also have other characteristics, such
-as whether they are international or domestic, their major, their expected graduation date,
-and the clubs they are a part of.
+as whether they are international or domestic, their major, and their expected graduation date.
 
 This project can be used by teachers and tutors to keep track of their students'
 grades and performance, as well as students themselves to

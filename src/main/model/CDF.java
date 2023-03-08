@@ -4,9 +4,10 @@ package model;
 public class CDF extends CourseGrade {
 
     // REQUIRES: percentage >= 0
-    // EFFECTS: creates a CDF with the given course and percentage
+    // EFFECTS: creates a CDF with the given course and percentage. sets cdf to true
     public CDF(Course c, int percentage) {
         super(c, percentage);
+        cdf = true;
     }
 
     // REQUIRES: percentage != -1 and percentage <= 100
