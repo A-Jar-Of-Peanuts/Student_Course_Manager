@@ -18,6 +18,7 @@ public class CoursePanel extends JPanel {
     private GridBagConstraints gbc;
     private JTextField name;
     private JTextField credit;
+    private JTextField removeName;
 
     // EFFECTS: creates a course panel
     public CoursePanel(StudentManager sm, CourseManager cm) {
@@ -27,7 +28,7 @@ public class CoursePanel extends JPanel {
         this.setLayout(gl);
         name = new JTextField();
         credit = new JTextField();
-
+        removeName = new JTextField();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -57,6 +58,50 @@ public class CoursePanel extends JPanel {
         name();
         credit();
         submitButton();
+        gbc.gridy = 100;
+        JLabel rs = new JLabel("Remove Course: \n");
+        this.add(rs, gbc);
+        remove();
+        removeButton();
+    }
+
+    // EFFECTS: adds remove button
+    public void removeButton() {
+        JButton b = new JButton("Remove");
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String n = removeName.getText().trim();
+                    if (n.isEmpty()) {
+                        throw new Exception();
+                    }
+                    cm.removeCourse(n);
+                    addCourses();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Invalid Input. Please try again.",
+                            "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        gbc.gridx = 501;
+        gbc.gridy = 120;
+        gbc.ipadx = 10;
+        gbc.ipady = 10;
+        this.add(b, gbc);
+    }
+
+    // EFFECTS: adds remove gui
+    public void remove() {
+        gbc.gridx = 501;
+        gbc.gridy = 110;
+        gbc.ipadx = 10;
+        gbc.ipady = 10;
+        JLabel one = new JLabel("Name: ");
+        this.add(one, gbc);
+        gbc.gridx = 511;
+        gbc.gridy = 110;
+        gbc.ipadx = 100;
+        this.add(removeName, gbc);
     }
 
     // EFFECTS: adds submit button
