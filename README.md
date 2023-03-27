@@ -26,6 +26,19 @@ grade I want.
 - As a user, I want to have the option to save my student and course manager list.
 - As a user, I want to have the option to load my student and course manager from file when I start the application.
 
+## Instructions for Grader
+- You can generate the first required action related to adding Courses to the Course Manager by clicking on the 
+"course" tab, entering a non-empty name String into the name field and an integer into the credit field
+and pressing submit.
+- You can generate the second required action relating to adding Courses to the Course Manager by clicking on the 
+"course" tab, entering a name of a course that is currently in the course Manager, and clicking
+remove.
+- You can locate my visual component by clicking on the "save/load" tab. The save
+and load buttons have image icons on them.
+- You can save the state of my application by clicking on the "save/load" tab, then clicking save.
+- You can load the state of my application by clicking on the "save/load" tab and then clicking
+on the load button. 
+
 ##References
 - CPSC 210 teller app
 - CPSC 210 jsonserialization demo
