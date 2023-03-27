@@ -37,9 +37,7 @@ public class GUI extends JFrame {
         StudentPanel panel1 = new StudentPanel(stManager, coManager);
         tabbedPane.add("Student", panel1);
 
-        CoursePanel panel2 = new CoursePanel();
-        JLabel t2 = new JLabel("course");
-        panel2.add(t2);
+        CoursePanel panel2 = new CoursePanel(stManager, coManager);
         tabbedPane.add("Course", panel2);
 
         JComponent panel3 = new SaveLoadPanel(stManager, coManager, panel1, panel2);

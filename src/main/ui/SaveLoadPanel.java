@@ -17,9 +17,10 @@ public class SaveLoadPanel extends JPanel {
     private CourseManager cm;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private GridLayout gl;
+    private GridBagLayout gl;
     private StudentPanel sp;
     private CoursePanel cp;
+    private GridBagConstraints gbc;
 
     // EFFECTS: creates a new save load panel
     public SaveLoadPanel(StudentManager sm, CourseManager cm, StudentPanel sp, CoursePanel cp) {
@@ -29,33 +30,40 @@ public class SaveLoadPanel extends JPanel {
         jsonReader = new JsonReader(JSON_STORE);
         this.sm = sm;
         this.cm = cm;
+        gl = new GridBagLayout();
+        this.setLayout(gl);
+        this.gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipady = 50;
+        gbc.ipadx = 50;
         addUI();
     }
 
     // EFFECTS: adds ui
     public void addUI() {
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        JButton save = new JButton("save");
+        JButton save = new JButton("save", new ImageIcon("data/floppyDisk.png"));
         save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 save();
             }
         });
-        this.add(save, c);
-        c.gridx = 1;
-        c.gridy = 0;
-        JButton load = new JButton("load");
+        this.add(save, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        JButton load = new JButton("load", new ImageIcon("data/load.png"));
         load.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 load();
                 sp.setSM(sm);
                 sp.setCM(cm);
                 sp.addStudents();
+                cp.setSM(sm);
+                cp.setCM(cm);
+                cp.addCourses();
             }
         });
-        this.add(load, c);
+        this.add(load, gbc);
     }
 
     // EFFECTS: saves the student manager and course manager to file

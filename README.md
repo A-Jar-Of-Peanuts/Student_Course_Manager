@@ -33,3 +33,4 @@ grade I want.
 - https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
 - https://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html#grid
 - https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
+- https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
