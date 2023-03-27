@@ -75,6 +75,7 @@ public class CourseManager implements Writable {
         return courses.size();
     }
 
+    // EFFECTS: returns this as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

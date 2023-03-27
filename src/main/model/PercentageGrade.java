@@ -13,7 +13,7 @@ public class PercentageGrade extends CourseGrade {
     // EFFECTS: return the grade for this course grade
     @Override
     public String getGrade() {
-        return percentage + "";
+        return percentage + "%";
     }
 
     // REQUIRES: percentage != -1

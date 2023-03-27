@@ -29,3 +29,7 @@ grade I want.
 ##References
 - CPSC 210 teller app
 - CPSC 210 jsonserialization demo
+- https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html
+- https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
+- https://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html#grid
+- https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html

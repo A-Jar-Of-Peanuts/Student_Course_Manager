@@ -10,7 +10,7 @@ public class JsonWriter {
     private PrintWriter writer;
     private String destination;
 
-    // EFFECTS: contructs writer to write to destination
+    // EFFECTS: constructs writer to write to destination
     public JsonWriter(String destination) {
         this.destination = destination;
     }

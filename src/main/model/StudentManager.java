@@ -75,6 +75,7 @@ public class StudentManager implements Writable {
         return students.size();
     }
 
+    // EFFECTS: returns this as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

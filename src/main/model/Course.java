@@ -23,6 +23,7 @@ public class Course implements Writable {
         return credit;
     }
 
+    // EFFECTS: returns this as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

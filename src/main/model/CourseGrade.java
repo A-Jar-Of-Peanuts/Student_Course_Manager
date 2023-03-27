@@ -43,6 +43,7 @@ public abstract class CourseGrade implements Writable {
         this.percentage = percentage;
     }
 
+    // EFFECTS: returns this as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
