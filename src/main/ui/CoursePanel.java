@@ -129,11 +129,6 @@ public class CoursePanel extends JPanel {
         this.add(b, gbc);
     }
 
-    // EFFECTS: adds coursegrade gui
-    public void courseGrade() {
-
-    }
-
     // EFFECTS: adds name gui
     public void name() {
         gbc.gridx = 501;

@@ -139,6 +139,7 @@ public class StudentPanel extends JPanel {
         }
     }
 
+    // EFFECTS: adds course grade info to text area
     private String addCourseGrade(Student s) {
         String text = "\tCourses: \n";
         for (int i = 0; i < s.getCourseGrade().size(); i++) {
