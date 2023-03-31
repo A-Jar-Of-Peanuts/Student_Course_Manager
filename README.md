@@ -29,10 +29,10 @@ grade I want.
 ## Instructions for Grader
 - You can generate the first required action related to adding Courses to the Course Manager by clicking on the 
 "course" tab, entering a non-empty name String into the name field and an integer into the credit field
-and pressing submit.
+and pressing submit. This adds a course to the course manager.
 - You can generate the second required action relating to adding Courses to the Course Manager by clicking on the 
 "course" tab, entering a name of a course that is currently in the course Manager, and clicking
-remove.
+remove. This removes the course from the course manager.
 - You can locate my visual component by clicking on the "save/load" tab. The save
 and load buttons have image icons on them.
 - You can save the state of my application by clicking on the "save/load" tab, then clicking save.
