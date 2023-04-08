@@ -39,11 +39,22 @@ and load buttons have image icons on them.
 - You can load the state of my application by clicking on the "save/load" tab and then clicking
 on the load button. 
 
+## Phase 4: Task 2
+Sat Apr 08 15:51:56 PDT 2023
+<br>
+Course added
+<br>
+Sat Apr 08 15:51:58 PDT 2023
+<br>
+Course removed
+
 ##References
 - CPSC 210 teller app
 - CPSC 210 jsonserialization demo
+- CPSC 210 alarm system
 - https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html
 - https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
 - https://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html#grid
 - https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
 - https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+- https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event

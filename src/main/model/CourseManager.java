@@ -29,11 +29,13 @@ public class CourseManager implements Writable {
             } else if (name.compareTo(courses.get(i).getName()) < 0) {
                 courses.add(i, new Course(name, credit));
                 map.put(name, courses.get(i));
+                EventLog.getInstance().logEvent(new Event("Course added"));
                 return true;
             }
         }
         courses.add(new Course(name, credit));
         map.put(name, courses.get(courses.size() - 1));
+        EventLog.getInstance().logEvent(new Event("Course added"));
         return true;
     }
 
@@ -45,6 +47,7 @@ public class CourseManager implements Writable {
         Course temp = courses.get(remove);
         map.remove(temp.getName());
         courses.remove(remove);
+        EventLog.getInstance().logEvent(new Event("Course removed"));
     }
 
     // REQUIRES: remove is the name of a course in the course list
@@ -55,6 +58,7 @@ public class CourseManager implements Writable {
         Course temp = map.get(remove);
         courses.remove(temp);
         map.remove(remove);
+        EventLog.getInstance().logEvent(new Event("Course removed"));
     }
 
     // REQUIRES: index is smaller than the length of courses

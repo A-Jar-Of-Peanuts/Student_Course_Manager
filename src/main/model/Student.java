@@ -41,6 +41,7 @@ public class Student implements Writable {
                 } else {
                     courseGrade.add(i, new PercentageGrade(course, percentage));
                 }
+                EventLog.getInstance().logEvent(new Event("Course Grade added"));
                 return true;
             }
         }
@@ -49,6 +50,7 @@ public class Student implements Writable {
         } else {
             courseGrade.add(new PercentageGrade(course, percentage));
         }
+        EventLog.getInstance().logEvent(new Event("Course Grade added"));
         return true;
     }
 

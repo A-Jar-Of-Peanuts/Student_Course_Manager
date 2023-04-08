@@ -30,11 +30,13 @@ public class StudentManager implements Writable {
             } else if (name.compareTo(students.get(i).getName()) < 0) {
                 students.add(i, new Student(name, status, major, gradDate));
                 map.put(name, students.get(i));
+                EventLog.getInstance().logEvent(new Event("Student added"));
                 return true;
             }
         }
         students.add(new Student(name, status, major, gradDate));
         map.put(name, students.get(students.size() - 1));
+        EventLog.getInstance().logEvent(new Event("Student added"));
         return true;
     }
 
@@ -45,6 +47,7 @@ public class StudentManager implements Writable {
         Student temp = students.get(remove);
         map.remove(temp.getName());
         students.remove(remove);
+        EventLog.getInstance().logEvent(new Event("Student removed"));
     }
 
     // REQUIRES: remove is the name of a student in the student list
@@ -55,6 +58,7 @@ public class StudentManager implements Writable {
         Student temp = map.get(remove);
         students.remove(temp);
         map.remove(remove);
+        EventLog.getInstance().logEvent(new Event("Student removed"));
     }
 
     // REQUIRES: index is smaller than the length of students
