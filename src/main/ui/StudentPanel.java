@@ -12,13 +12,11 @@ public class StudentPanel extends JPanel {
     private CourseManager cm;
     private JTextArea ta;
     private GridBagConstraints gbc;
-    private SaveLoadPanel slp;
 
     // EFFECTS: creates a student panel
     public StudentPanel(StudentManager sm, CourseManager cm) {
         this.sm = sm;
         this.cm = cm;
-        this.slp = slp;
         gl = new GridBagLayout();
         this.setLayout(gl);
 

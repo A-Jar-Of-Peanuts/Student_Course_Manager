@@ -11,15 +11,7 @@ public class Main {
     // creates and runs a student manager console
     public static void main(String[] args) throws FileNotFoundException {
         GUI gui = new GUI();
-        gui.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                EventLog el = EventLog.getInstance();
-                for (model.Event next : el) {
-                    System.out.println(next.toString());
-                }
-            }
-        });
+        PrintLog pl = new PrintLog(gui);
         StudentManagerConsole smc = new StudentManagerConsole();
     }
 }
