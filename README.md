@@ -48,6 +48,32 @@ Sat Apr 08 15:51:58 PDT 2023
 <br>
 Course removed
 
+## Phase 4: Task 3
+Significant refactoring can be done in the CourseManager and StudentManager and Student classes. 
+They both have one very similar method with a lot of duplicate code. The methods 
+should behave in similar ways, so if one of the methods break then the others
+probably will as well, and I might forget to fix all of the methods and just fix one. Therefore, it is a good idea to refactor these methods. 
+The addCourse/addStudent/addCourseGrade methods creates/takes in an object with a name 
+(course/student/coursegrade respectively), checks that there are no pre-existing objects with that same name,
+and then sorts the named object into an arraylist in lexicographical order, as
+well as adds it to a hashmap. The code for all three of these methods are very similar,
+only with the actual object they are sorting being different and some other details. Also, CourseManager and StudentManager
+have two removeCourse/removeStudent and two getStudent/getCourse methods that are also very similar and can be 
+refactored in the same way. I didn't write a removeCourseGrade/getCourseGrade method for Student, but it would 
+be nice for the Student class to have as well, and this refactoring will help me achieve that. 
+
+I can make a Named interface with a getName() method, and implement this interface in course/student/coursegrade.
+Then, I can make a separate class NamedHandler to handle adding Named objects. This class
+will have two field (ArrayList<\Named> and HashMap<String, Named\>), as well as a method called addNamed(Named n), and the code within can be copy and pasted
+from one of addCourse/addStudent/addCourseGrade. Also, the removeNamed(String name), removeNamed(int i), getNamed(String name), getNamed(int i)
+methods can be implemented here as well, with code copied over from removeCourse/removeStudent/getCourse/getStudent. After that, we can delete 
+the arraylist and hashmap fields in Student/StudentManager/CourseManager with a field of 
+NamedHandler, and replace the body of all the methods mentioned above to a call of the 
+corresponding NamedHandler method. With addCourse/addStudent/addCourseGrade, however
+I need to create an instance of a subclass of Named with the given parameter first before
+passing it to addNamed (in the case of addCourseGrade, I also need to determine if it's
+a CDF or percentageGrade first as well).
+
 ##References
 - CPSC 210 teller app
 - CPSC 210 jsonserialization demo
