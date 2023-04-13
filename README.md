@@ -74,6 +74,10 @@ I need to create an instance of a subclass of Named with the given parameter fir
 passing it to addNamed (in the case of addCourseGrade, I also need to determine if it's
 a CDF or percentageGrade first as well).
 
+For the anonymous classes in SaveLoadPanel, CoursePanel, and PrintLog, I just
+drew a line from the nested class to the outer class with a circle with a cross
+on the end.
+
 ##References
 - CPSC 210 teller app
 - CPSC 210 jsonserialization demo
