@@ -34,6 +34,7 @@ public class Student implements Writable {
     public boolean addCourseGrade(Course course, int percentage, boolean cdf) {
         for (int i = 0; i < courseGrade.size(); i++) {
             if (course.getName().equals(courseGrade.get(i).getName())) {
+                EventLog.getInstance().logEvent(new Event("Failed to add course grade"));
                 return false;
             } else if (course.getName().compareTo(courseGrade.get(i).getName()) < 0) {
                 if (cdf) {

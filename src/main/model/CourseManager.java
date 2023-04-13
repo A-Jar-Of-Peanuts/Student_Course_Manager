@@ -25,6 +25,7 @@ public class CourseManager implements Writable {
     public boolean addCourse(String name, int credit) {
         for (int i = 0; i < courses.size(); i++) {
             if (name.equals(courses.get(i).getName())) {
+                EventLog.getInstance().logEvent(new Event("Failed to add course"));
                 return false;
             } else if (name.compareTo(courses.get(i).getName()) < 0) {
                 courses.add(i, new Course(name, credit));

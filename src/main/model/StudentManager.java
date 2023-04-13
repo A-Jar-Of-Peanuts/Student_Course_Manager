@@ -26,6 +26,7 @@ public class StudentManager implements Writable {
     public boolean addStudent(String name, String status, String major, int gradDate) {
         for (int i = 0; i < students.size(); i++) {
             if (name.equals(students.get(i).getName())) {
+                EventLog.getInstance().logEvent(new Event("Failed to add student"));
                 return false;
             } else if (name.compareTo(students.get(i).getName()) < 0) {
                 students.add(i, new Student(name, status, major, gradDate));

@@ -40,13 +40,18 @@ and load buttons have image icons on them.
 on the load button. 
 
 ## Phase 4: Task 2
-Sat Apr 08 15:51:56 PDT 2023
+Wed Apr 12 21:36:34 PDT 2023
 <br>
 Course added
 <br>
-Sat Apr 08 15:51:58 PDT 2023
+Wed Apr 12 21:36:35 PDT 2023
+<br>
+Failed to add course
+<br>
+Wed Apr 12 21:36:37 PDT 2023
 <br>
 Course removed
+
 
 ## Phase 4: Task 3
 Significant refactoring can be done in the CourseManager and StudentManager and Student classes. 
