@@ -13,7 +13,8 @@ public class Event {
     private String description;
 
     /**
-     * Creates an event with the given description
+     * MODIFIES: this
+     * EFFECT: Creates an event with the given description
      * and the current date/time stamp.
      *
      * @param description a description of the event
@@ -24,7 +25,7 @@ public class Event {
     }
 
     /**
-     * Gets the date of this event (includes time).
+     * EFFECT: Gets the date of this event (includes time).
      *
      * @return the date of the event
      */
@@ -33,7 +34,7 @@ public class Event {
     }
 
     /**
-     * Gets the description of this event.
+     * EFFECT: Gets the description of this event.
      *
      * @return the description of the event
      */
@@ -41,6 +42,7 @@ public class Event {
         return description;
     }
 
+    // EFFECT: returns true if this equals other
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -57,11 +59,13 @@ public class Event {
                 && this.description.equals(otherEvent.description));
     }
 
+    // EFFECT: returns hashcode
     @Override
     public int hashCode() {
         return (HASH_CONSTANT * dateLogged.hashCode() + description.hashCode());
     }
 
+    //EFFECT: returns date logged plus description
     @Override
     public String toString() {
         return dateLogged.toString() + "\n" + description;
