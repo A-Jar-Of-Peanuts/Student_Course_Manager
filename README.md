@@ -17,6 +17,7 @@ because I am a student, and am pretty concerned with my grades
 and courses. This could be a good way to keep track of my performance
 and how well I need to do in certain courses in order to get the
 grade I want. 
+
 ## User Stories
 
 - As a user, I want to be able to add a student to my student manager.
