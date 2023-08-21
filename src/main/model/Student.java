@@ -54,6 +54,7 @@ public class Student implements Writable {
         EventLog.getInstance().logEvent(new Event("Course Grade added"));
         return true;
     }
+    //
 
     // EFFECTS: returns the weighted gpa of all of this student's course grades. If
     // everthing is credit/d/fail OR this student isn't taking any courses currently, returns -1
