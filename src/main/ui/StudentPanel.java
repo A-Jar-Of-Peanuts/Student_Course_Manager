@@ -50,11 +50,11 @@ public class StudentPanel extends JPanel {
         status();
         major();
         grad();
-        button();
+        submitButton();
     }
 
     // EFFECTS: adds submit button
-    public void button() {
+    public void submitButton() {
 
     }
 
