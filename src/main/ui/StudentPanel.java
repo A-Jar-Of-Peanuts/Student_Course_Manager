@@ -2,6 +2,8 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import model.*;
 
@@ -12,6 +14,7 @@ public class StudentPanel extends JPanel {
     private CourseManager cm;
     private JTextArea ta;
     private GridBagConstraints gbc;
+    private JTextField name, status, major, grad, removeName;
 
     // EFFECTS: creates a student panel
     public StudentPanel(StudentManager sm, CourseManager cm) {
@@ -34,6 +37,9 @@ public class StudentPanel extends JPanel {
         addStudents();
 
         addNewStudents();
+        remove();
+        removeButton();
+        courseGrade();
     }
 
     // EFFECTS: gui for adding new students
@@ -55,12 +61,106 @@ public class StudentPanel extends JPanel {
 
     // EFFECTS: adds submit button
     public void submitButton() {
-
+        JButton b = new JButton("Submit");
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String n = name.getText().trim();
+                    String s = status.getText().trim();
+                    String m = major.getText().trim();
+                    Integer g = Integer.parseInt(grad.getText().trim());
+                    if (n.isEmpty() || s.isEmpty() || m.isEmpty()) {
+                        throw new Exception();
+                    }
+                    sm.addStudent(n, s, m, g);
+                    addStudents();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Invalid Input. Please try again.",
+                            "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        gbc.gridx = 501;
+        gbc.gridy = 50;
+        gbc.ipadx = 10;
+        this.add(b, gbc);
     }
 
     // EFFECTS: adds coursegrade gui
     public void courseGrade() {
+        gbc.gridx = 501;
+        gbc.gridy = 140;
+        gbc.ipadx = 10;
+        JLabel one = new JLabel("Student Name");
+        this.add(one, gbc);
+        gbc.gridx = 511;
+        gbc.gridy = 140;
+        gbc.ipadx = 100;
+        JTextField sname = new JTextField();
+        this.add(sname, gbc);
 
+        gbc.gridx = 501;
+        gbc.gridy = 150;
+        gbc.ipadx = 10;
+        JLabel two = new JLabel("Course Name");
+        this.add(two, gbc);
+        gbc.gridx = 511;
+        gbc.gridy = 150;
+        gbc.ipadx = 100;
+        JTextField cname = new JTextField();
+        this.add(cname, gbc);
+
+        gbc.gridx = 501;
+        gbc.gridy = 160;
+        gbc.ipadx = 10;
+        JLabel three = new JLabel("CDF? (Y/N)");
+        this.add(three, gbc);
+        gbc.gridx = 511;
+        gbc.gridy = 160;
+        gbc.ipadx = 100;
+        JTextField cdf = new JTextField();
+        this.add(cdf, gbc);
+
+        gbc.gridx = 501;
+        gbc.gridy = 170;
+        gbc.ipadx = 10;
+        JLabel four = new JLabel("Percentage");
+        this.add(four, gbc);
+        gbc.gridx = 511;
+        gbc.gridy = 170;
+        gbc.ipadx = 100;
+        JTextField perc = new JTextField();
+        this.add(perc, gbc);
+
+        JButton b = new JButton("Submit");
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String s = sname.getText().trim();
+                    String c = cname.getText().trim();
+                    String cd = cdf.getText().trim();
+                    Integer p = Integer.parseInt(perc.getText().trim());
+                    if (s.isEmpty() || c.isEmpty() || cd.isEmpty()) {
+                        throw new Exception();
+                    }
+                    if (cd.equals("Y")) {
+                        sm.getStudent(s).addCourseGrade(cm.getCourse(c), p, true);
+                    } else if (cd.equals("N")) {
+                        sm.getStudent(s).addCourseGrade(cm.getCourse(c), p, false);
+                    } else {
+                        throw new Exception();
+                    }
+                    addStudents();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Invalid Input. Please try again.",
+                            "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        gbc.gridx = 501;
+        gbc.gridy = 180;
+        gbc.ipadx = 10;
+        this.add(b, gbc);
     }
 
     // EFFECTS: adds name gui
@@ -73,8 +173,8 @@ public class StudentPanel extends JPanel {
         gbc.gridx = 511;
         gbc.gridy = 10;
         gbc.ipadx = 100;
-        JTextField two = new JTextField();
-        this.add(two, gbc);
+        name = new JTextField();
+        this.add(name, gbc);
     }
 
     // EFFECTS: adds status gui
@@ -87,8 +187,8 @@ public class StudentPanel extends JPanel {
         gbc.gridx = 511;
         gbc.gridy = 20;
         gbc.ipadx = 100;
-        JTextField four = new JTextField();
-        this.add(four, gbc);
+        status = new JTextField();
+        this.add(status, gbc);
     }
 
     // EFFECTS: adds major gui
@@ -101,8 +201,8 @@ public class StudentPanel extends JPanel {
         gbc.gridx = 511;
         gbc.gridy = 30;
         gbc.ipadx = 100;
-        JTextField six = new JTextField();
-        this.add(six, gbc);
+        major = new JTextField();
+        this.add(major, gbc);
     }
 
     // EFFECTS: adds grad date gui
@@ -115,8 +215,8 @@ public class StudentPanel extends JPanel {
         gbc.gridx = 511;
         gbc.gridy = 40;
         gbc.ipadx = 100;
-        JTextField eight = new JTextField();
-        this.add(eight, gbc);
+        grad = new JTextField();
+        this.add(grad, gbc);
     }
 
     //EFFECTS: adds students and student info to text area.
@@ -146,6 +246,53 @@ public class StudentPanel extends JPanel {
             text += "\t\t\tGrade: " + s.getCourseGrade(i).getGrade() + "\n";
         }
         return text;
+    }
+
+    // EFFECTS: adds remove button
+    public void removeButton() {
+        JButton b = new JButton("Remove");
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String n = removeName.getText().trim();
+                    if (n.isEmpty()) {
+                        throw new Exception();
+                    }
+                    sm.removeStudent(n);
+                    addStudents();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Invalid Input. Please try again.",
+                            "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        gbc.gridx = 501;
+        gbc.gridy = 130;
+        gbc.ipadx = 10;
+        gbc.ipady = 10;
+        this.add(b, gbc);
+    }
+
+    // EFFECTS: adds remove gui
+    public void remove() {
+        gbc.gridx = 501;
+        gbc.gridy = 110;
+        gbc.ipadx = 10;
+        gbc.ipady = 10;
+        JLabel two = new JLabel("Remove Student: ");
+        this.add(two, gbc);
+        gbc.gridx = 501;
+        gbc.gridy = 120;
+        gbc.ipadx = 10;
+        gbc.ipady = 10;
+        JLabel one = new JLabel("Name: ");
+        this.add(one, gbc);
+        gbc.gridx = 511;
+        gbc.gridy = 120;
+        gbc.ipadx = 100;
+        removeName = new JTextField();
+        this.add(removeName, gbc);
     }
 
     // EFFECTS: sets student manager

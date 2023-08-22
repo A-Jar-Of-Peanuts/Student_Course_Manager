@@ -41,7 +41,6 @@ public class CoursePanel extends JPanel {
         JScrollPane scroll = new JScrollPane(ta);
         this.add(scroll, gbc);
         addCourses();
-
         addNewCourses();
     }
 
